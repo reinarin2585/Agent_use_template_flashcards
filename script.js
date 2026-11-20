@@ -4,9 +4,36 @@ const germanInput = document.getElementById("german-word");
 const wordList = document.getElementById("word-list");
 const selectButton = document.getElementById("select-button");
 const deleteButton = document.getElementById("delete-button");
-const wordPairs = [];
+const storageKey = "vocab-flashcards-word-pairs";
+const wordPairs = loadWordPairs();
 const selectedWordPairs = [];
 let selectionModeEnabled = false;
+
+// Loads saved word pairs from localStorage.
+function loadWordPairs() {
+    const savedPairs = localStorage.getItem(storageKey);
+
+    if (savedPairs === null) {
+        return [];
+    }
+
+    try {
+        const parsedPairs = JSON.parse(savedPairs);
+
+        if (Array.isArray(parsedPairs)) {
+            return parsedPairs;
+        }
+    } catch (error) {
+        console.error("Could not load saved word pairs.", error);
+    }
+
+    return [];
+}
+
+// Saves all word pairs to localStorage.
+function saveWordPairs() {
+    localStorage.setItem(storageKey, JSON.stringify(wordPairs));
+}
 
 // Shows all word pairs in the list.
 function showWordPairs() {
@@ -83,6 +110,7 @@ function deleteSelectedWordPairs() {
         }
     }
 
+    saveWordPairs();
     selectedWordPairs.length = 0;
     deleteButton.disabled = true;
     showWordPairs();
@@ -104,6 +132,7 @@ function addWordPair(event) {
         german: germanWord
     });
 
+    saveWordPairs();
     showWordPairs();
     wordForm.reset();
     englishInput.focus();
@@ -112,3 +141,4 @@ function addWordPair(event) {
 wordForm.addEventListener("submit", addWordPair);
 selectButton.addEventListener("click", toggleSelectionMode);
 deleteButton.addEventListener("click", deleteSelectedWordPairs);
+showWordPairs();
