@@ -7,7 +7,10 @@ A single-page website where I can add English–German word pairsand practise th
 Just me, on a laptop browser.
 
 ## Features (numbered, so prompts can refer to them)
-F1. Add a word pair (English + German) with a form.F2. Show all saved word pairs in a list.F3. Delete a word pair from the list.F4. Save pairs in localStorage so they survive a page reload.F5. Practice mode: show one English word, click to reveal German.F6. "Next" button shows a random different card.F7. Count how many cards I marked "I knew it" this session.
+F1. Add a word pair (English + German) with a form.
+F2. Show all saved word pairs in a list.
+F3. Enable to delete a word pair from the list.
+F4. Save pairs in localStorage so they survive a page reload.F5. Practice mode: show one English word, click to reveal German.F6. "Next" button shows a random different card.F7. Count how many cards I marked "I knew it" this session.
 
 ## Acceptance criteria (how I know a feature works)
 -
