@@ -138,47 +138,76 @@ td.details-column {
     stroke-width: 1.7;
 }
 
-.pie-chart-section {
+.chart-section {
     margin-top: 2rem;
 }
 
-.pie-chart-subtitle {
+.chart-subtitle {
     margin: -0.5rem 0 0;
     text-align: center;
     color: #78868c;
 }
 
-.pie-chart {
-    width: 180px;
-    height: 180px;
-    margin: 1rem auto;
-    border-radius: 50%;
-    background: #dce9ed;
+.no-chart-data {
+    margin: 1rem 0;
+    color: #78868c;
+    text-align: center;
 }
 
-.pie-chart-legend {
+.bar-chart {
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+    width: 100%;
+    height: 1.5rem;
+    margin: 1rem 0;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
-.pie-chart-legend p {
+.bar-chart[hidden],
+.bar-chart-legend[hidden] {
+    display: none;
+}
+
+.bar-with-symptoms {
+    background-color: #b7e4f5;
+}
+
+.bar-without-symptoms {
+    background-color: #ffd0a6;
+}
+
+.bar-chart-legend {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.bar-chart-legend p {
     margin: 0;
+    flex: 1;
 }
 
-.positive-key,
-.negative-key {
+.with-symptoms-label {
+    text-align: left;
+}
+
+.without-symptoms-label {
+    text-align: right;
+}
+
+.with-symptoms-key,
+.without-symptoms-key {
     display: inline-block;
     width: 0.8rem;
     height: 0.8rem;
     margin-right: 0.35rem;
-    border-radius: 50%;
+    border-radius: 2px;
 }
 
-.positive-key {
-    background-color: #ffd0a6;
-}
-
-.negative-key {
+.with-symptoms-key {
     background-color: #b7e4f5;
+}
+
+.without-symptoms-key {
+    background-color: #ffd0a6;
 }

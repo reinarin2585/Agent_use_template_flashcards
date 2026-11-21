@@ -57,14 +57,17 @@
             </table>
         </div>
 
-        <section class="pie-chart-section" aria-labelledby="pie-chart-title">
-            <h2 id="pie-chart-title">Symptoms after lactose-containing meals</h2>
-            <p class="pie-chart-subtitle" id="pie-chart-subtitle">Based on 0 lactose-containing meals</p>
-            <div class="pie-chart" id="pie-chart" role="img"
-                aria-label="No lactose-containing meals"></div>
-            <div class="pie-chart-legend">
-                <p><span class="positive-key"></span>Symptoms: <strong id="positive-percentage">0%</strong></p>
-                <p><span class="negative-key"></span>No symptoms: <strong id="negative-percentage">0%</strong></p>
+        <section class="chart-section" aria-labelledby="chart-title">
+            <h2 id="chart-title">Symptoms after lactose-containing meals</h2>
+            <p class="chart-subtitle" id="chart-subtitle">Based on 0 lactose-containing meals</p>
+            <p class="no-chart-data" id="no-chart-data" hidden>No data available yet</p>
+            <div class="bar-chart" id="bar-chart" role="img" aria-label="Lactose meal symptom proportions" hidden>
+                <span class="bar-with-symptoms" id="bar-with-symptoms" title="0 meals" aria-hidden="true"></span>
+                <span class="bar-without-symptoms" id="bar-without-symptoms" title="0 meals" aria-hidden="true"></span>
+            </div>
+            <div class="bar-chart-legend" id="bar-chart-legend" hidden>
+                <p class="with-symptoms-label"><span class="with-symptoms-key"></span>With symptoms <strong id="with-symptoms-result"></strong></p>
+                <p class="without-symptoms-label"><span class="without-symptoms-key"></span>Without symptoms <strong id="without-symptoms-result"></strong></p>
             </div>
         </section>
     </main>

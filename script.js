@@ -3,10 +3,14 @@ const symptomsCheckbox = document.querySelector("#symptoms");
 const symptomDetails = document.querySelector("#symptom-details");
 const symptomDetailsField = document.querySelector("#symptom-details-field");
 const entriesTableBody = document.querySelector("#entries-table-body");
-const pieChart = document.querySelector("#pie-chart");
-const positivePercentage = document.querySelector("#positive-percentage");
-const negativePercentage = document.querySelector("#negative-percentage");
-const pieChartSubtitle = document.querySelector("#pie-chart-subtitle");
+const barChart = document.querySelector("#bar-chart");
+const barChartLegend = document.querySelector("#bar-chart-legend");
+const noChartData = document.querySelector("#no-chart-data");
+const withSymptomsBar = document.querySelector("#bar-with-symptoms");
+const withoutSymptomsBar = document.querySelector("#bar-without-symptoms");
+const withSymptomsResult = document.querySelector("#with-symptoms-result");
+const withoutSymptomsResult = document.querySelector("#without-symptoms-result");
+const chartSubtitle = document.querySelector("#chart-subtitle");
 const storageKey = "dairyDiaryEntries";
 
 let entries = loadEntries();
@@ -139,36 +143,45 @@ function logLactoseCounts() {
     console.log("Lactose-containing meals:", lactoseMealCount);
     console.log("Positive:", positiveCount);
     console.log("Negative:", negativeCount);
-    updatePieChart(lactoseMealCount, positiveCount, negativeCount);
+    updateStackedBarChart(lactoseMealCount, positiveCount, negativeCount);
 }
 
-// Draws the positive and negative proportions of lactose-containing meals.
-function updatePieChart(lactoseMealCount, positiveCount, negativeCount) {
-    pieChartSubtitle.textContent =
+// Updates the symptom proportions and counts in the stacked bar chart.
+function updateStackedBarChart(lactoseMealCount, positiveCount, negativeCount) {
+    chartSubtitle.textContent =
         "Based on " + lactoseMealCount + " lactose-containing meals";
 
     if (lactoseMealCount === 0) {
-        pieChart.style.background = "#dce9ed";
-        pieChart.setAttribute("aria-label", "No lactose-containing meals");
-        positivePercentage.textContent = "0%";
-        negativePercentage.textContent = "0%";
+        barChart.hidden = true;
+        barChartLegend.hidden = true;
+        noChartData.hidden = false;
         return;
     }
 
     const positivePart = (positiveCount / lactoseMealCount) * 100;
-    const roundedPositive = Math.round(positivePart);
-    const roundedNegative = 100 - roundedPositive;
-
-    pieChart.style.background =
-        "conic-gradient(#ffd0a6 0% " + positivePart + "%, #b7e4f5 " +
-        positivePart + "% 100%)";
-    pieChart.setAttribute(
+    const negativePart = 100 - positivePart;
+    withSymptomsBar.style.width = positivePart + "%";
+    withoutSymptomsBar.style.width = negativePart + "%";
+    withSymptomsBar.title = formatMealCount(positiveCount);
+    withoutSymptomsBar.title = formatMealCount(negativeCount);
+    withSymptomsResult.textContent = positivePart.toFixed(1) + "%";
+    withoutSymptomsResult.textContent = negativePart.toFixed(1) + "%";
+    barChart.setAttribute(
         "aria-label",
-        "Symptoms " + roundedPositive + " percent, No symptoms " +
-        roundedNegative + " percent"
+        "With symptoms " + positivePart.toFixed(1) + " percent, Without symptoms " +
+        negativePart.toFixed(1) + " percent"
     );
-    positivePercentage.textContent = roundedPositive + "%";
-    negativePercentage.textContent = roundedNegative + "%";
+    noChartData.hidden = true;
+    barChart.hidden = false;
+    barChartLegend.hidden = false;
+}
+
+// Returns a meal count with the correct singular or plural label.
+function formatMealCount(mealCount) {
+    if (mealCount === 1) {
+        return "1 meal";
+    }
+    return mealCount + " meals";
 }
 
 // Creates one table cell containing text.
