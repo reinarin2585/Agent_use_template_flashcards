@@ -56,3 +56,23 @@ button {
     font: inherit;
     cursor: pointer;
 }
+
+h2 {
+    margin-top: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 0.6rem;
+    border: 1px solid #9bb9c5;
+    text-align: left;
+}
+
+th {
+    background-color: #e1f4fb;
+}
