@@ -10,6 +10,7 @@ let entries = loadEntries();
 symptomsCheckbox.addEventListener("change", updateSymptomDetailsRequirement);
 entryForm.addEventListener("submit", handleEntrySubmit);
 renderEntries();
+logLactoseCounts();
 
 // Shows symptom details only when symptoms are selected and keeps the field required.
 function updateSymptomDetailsRequirement() {
@@ -35,6 +36,7 @@ function handleEntrySubmit(event) {
     entries.push(entry);
     saveEntries();
     renderEntries();
+    logLactoseCounts();
     entryForm.reset();
     updateSymptomDetailsRequirement();
 }
@@ -110,6 +112,29 @@ function deleteEntry(entryToDelete) {
     entries.splice(entryIndex, 1);
     saveEntries();
     renderEntries();
+    logLactoseCounts();
+}
+
+// Counts lactose-containing meals and logs the positive and negative totals.
+function logLactoseCounts() {
+    let lactoseMealCount = 0;
+    let positiveCount = 0;
+    let negativeCount = 0;
+
+    for (const entry of entries) {
+        if (entry.containsLactose) {
+            lactoseMealCount++;
+            if (entry.symptoms) {
+                positiveCount++;
+            } else {
+                negativeCount++;
+            }
+        }
+    }
+
+    console.log("Lactose-containing meals:", lactoseMealCount);
+    console.log("Positive:", positiveCount);
+    console.log("Negative:", negativeCount);
 }
 
 // Creates one table cell containing text.
