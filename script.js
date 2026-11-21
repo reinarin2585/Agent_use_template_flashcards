@@ -3,6 +3,10 @@ const symptomsCheckbox = document.querySelector("#symptoms");
 const symptomDetails = document.querySelector("#symptom-details");
 const symptomDetailsField = document.querySelector("#symptom-details-field");
 const entriesTableBody = document.querySelector("#entries-table-body");
+const pieChart = document.querySelector("#pie-chart");
+const positivePercentage = document.querySelector("#positive-percentage");
+const negativePercentage = document.querySelector("#negative-percentage");
+const pieChartSubtitle = document.querySelector("#pie-chart-subtitle");
 const storageKey = "dairyDiaryEntries";
 
 let entries = loadEntries();
@@ -135,6 +139,36 @@ function logLactoseCounts() {
     console.log("Lactose-containing meals:", lactoseMealCount);
     console.log("Positive:", positiveCount);
     console.log("Negative:", negativeCount);
+    updatePieChart(lactoseMealCount, positiveCount, negativeCount);
+}
+
+// Draws the positive and negative proportions of lactose-containing meals.
+function updatePieChart(lactoseMealCount, positiveCount, negativeCount) {
+    pieChartSubtitle.textContent =
+        "Based on " + lactoseMealCount + " lactose-containing meals";
+
+    if (lactoseMealCount === 0) {
+        pieChart.style.background = "#dce9ed";
+        pieChart.setAttribute("aria-label", "No lactose-containing meals");
+        positivePercentage.textContent = "0%";
+        negativePercentage.textContent = "0%";
+        return;
+    }
+
+    const positivePart = (positiveCount / lactoseMealCount) * 100;
+    const roundedPositive = Math.round(positivePart);
+    const roundedNegative = 100 - roundedPositive;
+
+    pieChart.style.background =
+        "conic-gradient(#91d4ec 0% " + positivePart + "%, #f7c99c " +
+        positivePart + "% 100%)";
+    pieChart.setAttribute(
+        "aria-label",
+        "Symptoms " + roundedPositive + " percent, No symptoms " +
+        roundedNegative + " percent"
+    );
+    positivePercentage.textContent = roundedPositive + "%";
+    negativePercentage.textContent = roundedNegative + "%";
 }
 
 // Creates one table cell containing text.

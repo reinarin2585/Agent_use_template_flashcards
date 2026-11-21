@@ -4,8 +4,7 @@
 Beginner project. Read SPEC.md for what to build. Never edit SPEC.md.
 
 ## Technology
-- Plain HTML, CSS and JavaScript only. No frameworks, libraries, npm,
-  or build tools.
+- Plain HTML, CSS and JavaScript only. No frameworks, libraries exept chart.js, npm,  or build tools.
 - Files: index.html, style.css, script.js. Ask before creating new files.
 
 ## Code style
