@@ -35,18 +35,27 @@
         </form>
 
         <h2>Entries</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Food/Meal</th>
-                    <th>Contains lactose?</th>
-                    <th>Symptoms?</th>
-                    <th>Symptom details</th>
-                </tr>
-            </thead>
-            <tbody id="entries-table-body"></tbody>
-        </table>
+        <div class="entries-table-wrapper">
+            <table>
+                <colgroup>
+                    <col class="date-column">
+                    <col class="meal-column">
+                    <col class="lactose-column">
+                    <col class="symptoms-column">
+                    <col class="details-column">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Food/Meal</th>
+                        <th>Contains lactose?</th>
+                        <th>Symptoms?</th>
+                        <th class="details-column">Symptom details</th>
+                    </tr>
+                </thead>
+                <tbody id="entries-table-body"></tbody>
+            </table>
+        </div>
     </main>
 </body>
 </html>

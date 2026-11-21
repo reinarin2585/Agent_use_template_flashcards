@@ -63,7 +63,33 @@ h2 {
 
 table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
+}
+
+.entries-table-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+col.date-column {
+    width: 18%;
+}
+
+col.meal-column {
+    width: 22%;
+}
+
+col.lactose-column {
+    width: 19%;
+}
+
+col.symptoms-column {
+    width: 14%;
+}
+
+col.details-column {
+    width: 27%;
 }
 
 th,
@@ -71,8 +97,43 @@ td {
     padding: 0.6rem;
     border: 1px solid #9bb9c5;
     text-align: left;
+    overflow-wrap: anywhere;
 }
 
 th {
     background-color: #e1f4fb;
+}
+
+td.details-column {
+    position: relative;
+}
+
+.delete-button {
+    position: absolute;
+    right: -1.5rem;
+    top: 50%;
+    width: 1.4rem;
+    height: 1.5rem;
+    padding: 0;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #78868c;
+}
+
+.delete-button:hover {
+    background-color: transparent;
+    color: #d33b3b;
+    cursor: pointer;
+}
+
+.delete-button svg {
+    display: block;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: auto 0 auto auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
 }

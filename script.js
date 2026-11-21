@@ -67,9 +67,49 @@ function renderEntries() {
         row.appendChild(createTableCell(entry.meal));
         row.appendChild(createTableCell(formatCheckboxValue(entry.containsLactose)));
         row.appendChild(createTableCell(formatCheckboxValue(entry.symptoms)));
-        row.appendChild(createTableCell(entry.symptomDetails));
+        const detailsCell = createTableCell(entry.symptomDetails);
+        detailsCell.className = "details-column";
+        detailsCell.appendChild(createDeleteButton(entry));
+        row.appendChild(detailsCell);
         entriesTableBody.appendChild(row);
     }
+}
+
+// Creates a button that deletes the selected entry.
+function createDeleteButton(entry) {
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "delete-button";
+    deleteButton.setAttribute("aria-label", "Delete entry");
+    deleteButton.title = "Delete entry";
+
+    const trashIcon = createTrashIcon();
+    deleteButton.appendChild(trashIcon);
+
+    deleteButton.addEventListener("click", function () {
+        deleteEntry(entry);
+    });
+
+    return deleteButton;
+}
+
+// Draws the trash icon used by each delete button.
+function createTrashIcon() {
+    const trashIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    trashIcon.setAttribute("viewBox", "0 0 24 24");
+    trashIcon.setAttribute("aria-hidden", "true");
+    const trashShape = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    trashShape.setAttribute("d", "M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3");
+    trashIcon.appendChild(trashShape);
+    return trashIcon;
+}
+
+// Removes the selected entry, saves the entries and redraws the table.
+function deleteEntry(entryToDelete) {
+    const entryIndex = entries.indexOf(entryToDelete);
+    entries.splice(entryIndex, 1);
+    saveEntries();
+    renderEntries();
 }
 
 // Creates one table cell containing text.
