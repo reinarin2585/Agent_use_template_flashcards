@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,5 +8,31 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <main>
+        <h1>Dairy Diary</h1>
+        <form id="entry-form">
+            <div class="form-field">
+                <label for="entry-date">Date</label>
+                <input type="date" id="entry-date" name="date" lang="en-GB" required>
+            </div>
+            <div class="form-field">
+                <label for="meal">Food/Meal</label>
+                <input type="text" id="meal" name="meal" required>
+            </div>
+            <div class="checkbox-field">
+                <input type="checkbox" id="contains-lactose" name="containsLactose">
+                <label for="contains-lactose">Contains lactose?</label>
+            </div>
+            <div class="checkbox-field">
+                <input type="checkbox" id="symptoms" name="symptoms">
+                <label for="symptoms">Symptoms?</label>
+            </div>
+            <div class="form-field">
+                <label for="symptom-details">Symptom details</label>
+                <textarea id="symptom-details" name="symptomDetails" rows="3"></textarea>
+            </div>
+            <button type="submit">Add Entry</button>
+        </form>
+    </main>
 </body>
 </html>
