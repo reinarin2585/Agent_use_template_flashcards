@@ -160,7 +160,7 @@ function updatePieChart(lactoseMealCount, positiveCount, negativeCount) {
     const roundedNegative = 100 - roundedPositive;
 
     pieChart.style.background =
-        "conic-gradient(#91d4ec 0% " + positivePart + "%, #f7c99c " +
+        "conic-gradient(#ffd0a6 0% " + positivePart + "%, #b7e4f5 " +
         positivePart + "% 100%)";
     pieChart.setAttribute(
         "aria-label",
